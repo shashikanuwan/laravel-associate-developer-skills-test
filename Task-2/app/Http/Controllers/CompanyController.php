@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CompanyStoreRequest;
-use App\Http\Requests\UpdateCompanyRequest;
+use App\Http\Requests\CompanyUpdateRequest;
 use App\Models\Company;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -12,11 +12,11 @@ class CompanyController extends Controller
 {
     public function index()
     {
-        return view('company.company')
+        return view('company.index')
             ->with([
                 'companies' => Company::query()
                     ->orderBy('id', 'DESC')
-                    ->paginate(10)
+                    ->paginate(7)
             ]);
     }
 
@@ -35,16 +35,12 @@ class CompanyController extends Controller
             ->with('success', 'Company successfully created!');
     }
 
-    public function show()
-    {
-    }
-
     public function edit(Company $company)
     {
         return view('company.edit')->with(['company' => $company]);
     }
 
-    public function update(UpdateCompanyRequest $request, Company $company)
+    public function update(CompanyUpdateRequest $request, Company $company)
     {
         $company->update([
             'name' => $request->get('name'),
