@@ -23,6 +23,10 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                     @endrole
+
+                    <x-jet-nav-link href="{{ route('company.index') }}" :active="request()->routeIs('company.index')">
+                        {{ __('Companies') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 
@@ -174,6 +178,14 @@
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
             @endrole
+
+            <x-jet-responsive-nav-link href="{{ route('company.index') }}" :active="request()->routeIs('company.index')">
+                {{ __('Companies') }}
+            </x-jet-responsive-nav-link>
+
+            {{-- <x-jet-responsive-nav-link href="{{ route('employee') }}" :active="request()->routeIs('employee')">
+                {{ __('Employees') }}
+            </x-jet-responsive-nav-link> --}}
         </div>
 
         @auth
