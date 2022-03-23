@@ -1,6 +1,6 @@
 <section class="antialiased px-4 mt-6">
     <div class="flex flex-col justify-center h-full">
-        <div class="w-full max-w-5xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+        <div class="w-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
             <header class="px-5 py-4 border-b border-gray-200">
                 <h2 class="font-semibold text-gray-800">All Companies</h2>
             </header>

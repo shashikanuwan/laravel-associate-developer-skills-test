@@ -14,7 +14,7 @@ Route::resource('company', CompanyController::class)->except('show');
 Route::resource('employee', EmployeeController::class)->except('show');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('/dashboard',  DashboardController::class)->name('dashboard');
-    Route::get('/user/dashboard',  UserDashboardController::class)->name('user.dashboard');
-    Route::get('/admin/dashboard',  AdminDashboardController::class)->name('admin.dashboard');
+    Route::get('/dashboard', DashboardController::class)->name('dashboard');
+    Route::get('/user/dashboard', UserDashboardController::class)->name('user.dashboard');
+    Route::get('/admin/dashboard', AdminDashboardController::class)->name('admin.dashboard');
 });
