@@ -42,4 +42,5 @@
             @endforelse
         </tbody>
     </table>
+    {{$companies->links()}}
 </div>

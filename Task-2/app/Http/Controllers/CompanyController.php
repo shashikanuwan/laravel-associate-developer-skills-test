@@ -15,7 +15,7 @@ class CompanyController extends Controller
         return view('company.company')
             ->with([
                 'companies' => Company::query()
-                    ->get()
+                    ->paginate(10)
             ]);
     }
 
