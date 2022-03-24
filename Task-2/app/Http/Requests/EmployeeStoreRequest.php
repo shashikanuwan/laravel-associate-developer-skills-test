@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Employee;
+use App\Services\EmployeeService;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EmployeeStoreRequest extends FormRequest
@@ -21,5 +23,11 @@ class EmployeeStoreRequest extends FormRequest
             'profile_photo' => 'required|image|mimes:png,jpg,jpeg',
             'company_id' => 'required|integer',
         ];
+    }
+
+    public function store(EmployeeService $employeeService)
+    {
+        $employee = Employee::create($this->validated());
+        $employeeService->storeFile($employee, $this);
     }
 }
