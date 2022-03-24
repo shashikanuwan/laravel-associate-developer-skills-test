@@ -1,0 +1,296 @@
+{
+	"info": {
+		"_postman_id": "eccb2868-df01-42d7-aee0-0a84a9ba4968",
+		"name": "laravel-associate-developer-skills-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"shashika\",\r\n    \"email\" : \"shashika@gmail.com\",\r\n    \"password\" : \"12345678\",\r\n    \"password_confirmation\" : \"12345678\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"shashika@gmail.com\",\r\n    \"password\" : \"12345678\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch All Users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Single user",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/user/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Shashika Nuwan\",\r\n    \"email\" : \"shashika_2@gmail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/user/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/user/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOWJlMmNmZWQ5MTc3MGZkOTY2OTdkMjFiNDQ3YWM4ZGE5YWY5MGQ3MWIyODQ2NDI4Nzc3NWQ0MjVmY2Q5ZTcyYTZhMjlhODkyYWMxYmI1NDciLCJpYXQiOjE2NDgxMTkzNjYuMjQ3OTk1LCJuYmYiOjE2NDgxMTkzNjYuMjQ4MDA0LCJleHAiOjE2Nzk2NTUzNjYuMjA5OTM3LCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.PXO-4Q0e-DDld_0Mdv9M-VlMVl1TwANOsuXutQDrWw8GvyqZFUcLy-SLgrYAFu2O_KrDJL0Xrl4DwM7pM--tGJ1CS_3h3F4nK4La8LyGgPAdref5gu2NCOv4xeBnglTdXLFUOpB3vOaNECy2h8lPynCmGPNvndoPp3eP7rU0cP3BXuctYm5WyHBCpdLJdS1v4PrGEp8OBFlwJFvgzaAImhBLf3Agdd7ZdbqFCz5YuaS3TDwCbHi7yZ56rly-NiOO2QVCKy7bk2Oba46avgG5BX8DDa_2bFudM_Q1XlkdyOhWVn8o4VsLCl8e1aI-PvRTqry7CHVXji1sXZBqKJxyyc-47DDa-_HCMEAsyPUIUc6NbvR6aajEsgMblOYJQaJVuNe5jB-ZmEuaZh3k7z4AEN2tbuDdx0DB5rLRtSTz85adJu9KtCLZzHa7jqyi1IyDczgt8HizY8sCxsg9xqcGi_l2PEo0SZDpdVl0oFvB9ZnDrXSQg4GaBwvNMiQ0Y6mrg4yEozhkVBuDRj_KwN6jAVAr7ehv8qz9M-0_muWfL6lgN-AXurafJ7Uca7LSfjxj6AN7rRIgzg0zqe9GhfpeE1DQ4SF97e46B047mDHcjsUpxgufzQyt9G8ltavzATBJTWiU-_CutdXZyXCH4abEo8oYh-UEK9Z1nYVxJ_S_7jE",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
