@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Company;
+use App\Services\CompanyService;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CompanyStoreRequest extends FormRequest
@@ -21,5 +23,11 @@ class CompanyStoreRequest extends FormRequest
             'logo' => 'required|image|mimes:png,jpg,jpeg|dimensions:min_width=100,min_height=100',
             'cover_image' => 'required|image|mimes:png,jpg,jpeg',
         ];
+    }
+
+    public function store(CompanyService $companyService)
+    {
+        $company = Company::create($this->validated());
+        $companyService->storeFile($company, $this);
     }
 }

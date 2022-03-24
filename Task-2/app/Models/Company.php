@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\CompanyService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +12,7 @@ class Company extends Model
 
     protected $guarded = [];
 
-    public function CompanyUpdate($request)
+    public function CompanyUpdate($request, CompanyService $companyService)
     {
         $this->update([
             'name' => $request->get('name'),
@@ -19,6 +20,8 @@ class Company extends Model
             'telephone' => $request->get('telephone'),
             'website' => $request->get('website'),
         ]);
+
+        $companyService->storeFile($this, $request);
     }
 
     public function getCompany()

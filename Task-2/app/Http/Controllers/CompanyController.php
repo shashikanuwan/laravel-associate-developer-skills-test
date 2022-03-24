@@ -22,8 +22,7 @@ class CompanyController extends Controller
 
     public function store(CompanyStoreRequest $request, CompanyService $companyService)
     {
-        $company = Company::create($request->validated());
-        $companyService->storeFile($company, $request);
+        $request->store($companyService);
 
         return redirect()->route('company.index')
             ->with('success', 'Company successfully created!');
@@ -36,8 +35,7 @@ class CompanyController extends Controller
 
     public function update(CompanyUpdateRequest $request, Company $company, CompanyService $companyService)
     {
-        $company->CompanyUpdate($request);
-        $companyService->storeFile($company, $request);
+        $company->CompanyUpdate($request, $companyService);
 
         return redirect()->route('company.index')
             ->with('success', 'Company successfully updated!');
