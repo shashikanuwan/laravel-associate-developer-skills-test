@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@wearedesigners.net',
-            'password' => '$2y$10$Am94MmiA/JFXTz/wFWbxxugHud2IAusQ0dxllVU8j3kZg5dfUJynO'
+            'password' => '654321'
         ])->assignRole(Role::ROLE_ADMIN);
     }
 }
