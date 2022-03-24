@@ -50,9 +50,4 @@ class User extends Authenticatable
     {
         return $this->hasRole(Role::ROLE_USER);
     }
-
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = bcrypt($value);
-    }
 }

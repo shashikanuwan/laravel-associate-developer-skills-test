@@ -11,7 +11,11 @@ class RegisterController extends Controller
 {
     public function __invoke(RegisterRequest $request)
     {
-        $user = User::create($request->validated());
+        $user = User::create([
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'password' => (bcrypt($request->get('password'))),
+        ])->assignRole('user');
 
         return new UserResource($user);
     }
