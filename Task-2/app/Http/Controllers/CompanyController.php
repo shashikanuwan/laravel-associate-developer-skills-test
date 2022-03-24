@@ -5,19 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CompanyStoreRequest;
 use App\Http\Requests\CompanyUpdateRequest;
 use App\Models\Company;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
+use App\Services\CompanyService;
 
 class CompanyController extends Controller
 {
-    public function index()
+    public function index(Company $company)
     {
         return view('company.index')
-            ->with([
-                'companies' => Company::query()
-                    ->orderBy('id', 'DESC')
-                    ->paginate(7)
-            ]);
+            ->with(['companies' => $company->getCompany()]);
     }
 
     public function create()
@@ -25,11 +20,10 @@ class CompanyController extends Controller
         return view('company.create');
     }
 
-    public function store(CompanyStoreRequest $request)
+    public function store(CompanyStoreRequest $request, CompanyService $companyService)
     {
         $company = Company::create($request->validated());
-        $this->storeLogo($company, $request->file('logo'));
-        $this->storeCoverImage($company, $request->file('cover_image'));
+        $companyService->storeFile($company, $request);
 
         return redirect()->route('company.index')
             ->with('success', 'Company successfully created!');
@@ -40,60 +34,20 @@ class CompanyController extends Controller
         return view('company.edit')->with(['company' => $company]);
     }
 
-    public function update(CompanyUpdateRequest $request, Company $company)
+    public function update(CompanyUpdateRequest $request, Company $company, CompanyService $companyService)
     {
-        $company->update([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'telephone' => $request->get('telephone'),
-            'website' => $request->get('website'),
-        ]);
-
-        $this->storeLogo($company, $request->file('logo'));
-        $this->storeCoverImage($company, $request->file('cover_image'));
+        $company->CompanyUpdate($request);
+        $companyService->storeFile($company, $request);
 
         return redirect()->route('company.index')
             ->with('success', 'Company successfully updated!');
     }
 
-    public function destroy(Company $company)
+    public function destroy(Company $company, CompanyService $companyService)
     {
-        $this->deleteOldLogo($company);
-        $this->deleteOldCoverImage($company);
+        $companyService->deleteFile($company);
         $company->delete();
 
         return back()->with('success', 'Company successfully deleted!');
-    }
-
-    private function storeLogo(Company $company, UploadedFile $file = null)
-    {
-        if ($file != null) {
-            $this->deleteOldLogo($company);
-            $filename = $company->getRouteKey() . '.' . $file->getClientOriginalExtension();
-            Storage::disk('local')->put('public/logos/' . $filename, file_get_contents(request()->file('logo')->getRealPath()), 'public');
-            $company->logo = $filename;
-            $company->save();
-        }
-    }
-
-    private function storeCoverImage(Company $company, UploadedFile $file = null)
-    {
-        if ($file != null) {
-            $this->deleteOldCoverImage($company);
-            $filename = $company->getRouteKey() . '.' . $file->getClientOriginalExtension();
-            Storage::disk('local')->put('public/cover-images/' . $filename, file_get_contents(request()->file('cover_image')->getRealPath()), 'public');
-            $company->cover_image = $filename;
-            $company->save();
-        }
-    }
-
-    protected function deleteOldLogo(Company $company)
-    {
-        Storage::disk('local')->delete('public/logos/' . $company->logo);
-    }
-
-    protected function deleteOldCoverImage(Company $company)
-    {
-        Storage::disk('local')->delete('public/cover-images/' . $company->cover_image);
     }
 }
