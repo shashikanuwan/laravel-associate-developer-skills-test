@@ -13,7 +13,7 @@ Route::post('/login', LoginController::class)
     ->name('user.login');
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('/logout', LogoutController::class)
+    Route::post('/logout', LogoutController::class)
         ->name('user.logout');
 
     Route::apiResource('user', UserController::class)
