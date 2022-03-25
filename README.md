@@ -39,7 +39,11 @@ Then running migrations
 or
 
     php artisan migrate  --seed
-    
+
+Then create the symbolic link
+
+    php artisan storage:link
+
 Then start the server
 
     php artisan serve
