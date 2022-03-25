@@ -9,6 +9,13 @@ use App\Services\CompanyService;
 
 class CompanyController extends Controller
 {
+    private $companyService;
+
+    public function __construct(CompanyService $companyService)
+    {
+        return $this->companyService = $companyService;
+    }
+
     public function index(Company $company)
     {
         return view('company.index')
@@ -20,9 +27,9 @@ class CompanyController extends Controller
         return view('company.create');
     }
 
-    public function store(CompanyStoreRequest $request, CompanyService $companyService)
+    public function store(CompanyStoreRequest $request)
     {
-        $request->store($companyService);
+        $request->store($this->companyService);
 
         return redirect()->route('company.index')
             ->with('success', 'Company successfully created!');
@@ -33,17 +40,17 @@ class CompanyController extends Controller
         return view('company.edit')->with(['company' => $company]);
     }
 
-    public function update(CompanyUpdateRequest $request, Company $company, CompanyService $companyService)
+    public function update(CompanyUpdateRequest $request, Company $company)
     {
-        $company->CompanyUpdate($request, $companyService);
+        $company->CompanyUpdate($request, $this->companyService);
 
         return redirect()->route('company.index')
             ->with('success', 'Company successfully updated!');
     }
 
-    public function destroy(Company $company, CompanyService $companyService)
+    public function destroy(Company $company)
     {
-        $companyService->deleteFile($company);
+        $this->companyService->deleteFile($company);
         $company->delete();
 
         return back()->with('success', 'Company successfully deleted!');

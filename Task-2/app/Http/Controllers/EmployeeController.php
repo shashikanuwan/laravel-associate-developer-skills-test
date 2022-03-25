@@ -10,6 +10,13 @@ use App\Services\EmployeeService;
 
 class EmployeeController extends Controller
 {
+    private $employeeService;
+
+    public function __construct(EmployeeService $employeeService)
+    {
+        return $this->employeeService = $employeeService;
+    }
+
     public function index(Employee $employee)
     {
         return view('employee.index')
@@ -21,9 +28,9 @@ class EmployeeController extends Controller
         return view('employee.create');
     }
 
-    public function store(EmployeeStoreRequest $request, EmployeeService $employeeService)
+    public function store(EmployeeStoreRequest $request)
     {
-        $request->store($employeeService);
+        $request->store($this->employeeService);
 
         return redirect()->route('employee.index')
             ->with('success', 'Employee successfully created!');
@@ -38,17 +45,17 @@ class EmployeeController extends Controller
             ]);
     }
 
-    public function update(EmployeeUpdateRequest $request, Employee $employee, EmployeeService $employeeService)
+    public function update(EmployeeUpdateRequest $request, Employee $employee)
     {
-        $employee->employeeUpdate($request, $employeeService);
+        $employee->employeeUpdate($request, $this->employeeService);
 
         return redirect()->route('employee.index')
             ->with('success', 'Employee successfully updated!');
     }
 
-    public function destroy(Employee $employee, EmployeeService $employeeService)
+    public function destroy(Employee $employee)
     {
-        $employeeService->deleteFile($employee);
+        $this->employeeService->deleteFile($employee);
         $employee->delete();
 
         return back()->with('success', 'Employee successfully deleted!');
